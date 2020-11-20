@@ -9,10 +9,11 @@ license = "MIT"
 notion_scripts = "notion_scripts:main"
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "3.7.7"
 notion = "^0.0.25"
 click = "^7.1.2"
 marshmallow = "^3.9.1"
+goodreads_api_client = "^0.1.0-alpha.4"
 
 [tool.poetry.dev-dependencies]
 pylint = "^2.6.0"

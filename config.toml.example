@@ -1,4 +1,12 @@
 token = "<token_v2>"
 
 [booklist_info]
+goodreads_api_token = "Get a token from https://www.goodreads.com/api/keys"
 page = "https://www.notion.so/<some_org_id>/<a_page_id>"
+
+[booklist_info.columns]
+Pages = "num_pages"
+publication_year = "publication_year"
+publication_month = "publication_month"
+publication_day = "publication_day"
+Rating = "average_rating"
