@@ -18,11 +18,12 @@ class Config(Schema):
         columns = fields.Dict(
             keys=fields.Str(), values=fields.Str(),
             default={
-                "Pages": "num_pages",
+                "pages": "num_pages",
                 "publication_year": "publication_year",
                 "publication_month": "publication_month",
                 "publication_day": "publication_day",
-                "Rating": "average_rating",
+                "rating": "average_rating",
+                "name": "title",
             }
         )
 
