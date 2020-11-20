@@ -1,0 +1,4 @@
+token = "<token_v2>"
+
+[booklist_info]
+page = "https://www.notion.so/<some_org_id>/<a_page_id>"
