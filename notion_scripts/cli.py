@@ -7,7 +7,7 @@ from notion_scripts.booklist_info import BooklistInfo
 
 
 @click.group()
-@click.option('-c', '--config', help='Full path to TOML config file')
+@click.option('-c', '--config', help='Full path to TOML config file', type=click.Path())
 @click.pass_context
 def scripts(ctx, config):
     """A CLI wrapper for the API of Public scripts."""
@@ -25,5 +25,5 @@ def test():
 
 @scripts.command()
 @click.pass_context
-def booklist_info(ctx):
+def booklist(ctx):
     BooklistInfo(ctx)
