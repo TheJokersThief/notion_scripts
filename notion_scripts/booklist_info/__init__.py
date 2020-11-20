@@ -1,0 +1,4 @@
+
+
+class BooklistInfo():
+    pass
