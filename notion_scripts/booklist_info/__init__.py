@@ -20,7 +20,7 @@ class BooklistInfo():
             if row.do_not_process:
                 print(f"Not processing {row.title}")
                 continue
-            print(f"Now processing {row.title}")
+            print(f"Processing {row.title}")
 
             book = self.gr_client.Book.title(row.title)  # pylint: disable=no-member
             print(f"Got book info for goodreads book {book.get('title')}")
