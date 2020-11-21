@@ -18,14 +18,9 @@ def scripts(ctx, config):
     ctx.obj['logger'].setLevel(logging.DEBUG)
 
     ctx.obj['config'] = Config.load_config(config)
-    ctx.obj['logger'].info("Parsed config: " + repr(ctx.obj['config']))
+    ctx.obj['logger'].debug("Parsed config: " + repr(ctx.obj['config']))
 
     ctx.obj['client'] = NotionClient(token_v2=ctx.obj['config'].get('token'))
-
-
-@scripts.command()
-def test():
-    pass
 
 
 @scripts.command()
