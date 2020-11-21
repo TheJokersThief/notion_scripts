@@ -29,3 +29,7 @@ dev: ensure-poetry clean
 
 install: ensure-poetry clean
 	poetry install --no-dev
+
+gen-config: ensure-poetry install
+	rm -f config.toml.example
+	poetry run notion_scripts --config config.toml.example

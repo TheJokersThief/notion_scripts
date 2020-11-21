@@ -8,11 +8,13 @@ from notion_scripts.logging import setup_logger
 from notion_scripts.booklist_info import BooklistInfo
 
 
-@click.group()
-@click.option('-c', '--config', help='Full path to TOML config file', type=click.Path())
+@click.group(invoke_without_command=True)
+@click.option('-c', '--config', help='Full path to TOML config file (If one doesn\'t exist at that path, it will be generated for you and no commands will be run)', type=click.Path())
 @click.pass_context
 def scripts(ctx, config):
-    """A CLI wrapper for the API of Public scripts."""
+    """
+    A CLI wrapper for some helpful scripts I use on my personal Notion.
+    """
     ctx.ensure_object(dict)
     ctx.obj['logger'] = setup_logger()
     ctx.obj['logger'].setLevel(logging.DEBUG)
@@ -26,4 +28,9 @@ def scripts(ctx, config):
 @scripts.command()
 @click.pass_context
 def booklist(ctx):
+    """
+    Updates the given page/database with information from the goodreads API by
+    matching books based on title. You can configure the mapping of column names
+    to API results in the config.
+    """
     BooklistInfo(ctx)
