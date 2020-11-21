@@ -6,6 +6,7 @@ class BooklistInfo():
     def __init__(self, context):
         self.client = context.obj['client']
         self.config = context.obj['config'].get('booklist_info')
+        self.logger = context.obj['logger']
         self.gr_client = gr.Client(developer_key=self.config.get('goodreads_api_token'))
 
         table_data = self._get_db_data()
@@ -18,12 +19,12 @@ class BooklistInfo():
     def _process_table_data(self, data):
         for row in data:
             if row.do_not_process:
-                print(f"Not processing {row.title}")
+                self.logger.warning(f"Not processing {row.title}")
                 continue
-            print(f"Processing {row.title}")
+            self.logger.info(f"Processing {row.title}")
 
             book = self.gr_client.Book.title(row.title)  # pylint: disable=no-member
-            print(f"Got book info for goodreads book {book.get('title')}")
+            self.logger.info(f"Got book info for goodreads book {book.get('title')}")
             if book:
                 for column, api_field in self.config.get('columns').items():
                     coltype = type(getattr(row, column)) if getattr(row, column) is not None else str
@@ -31,6 +32,7 @@ class BooklistInfo():
                     if raw_value:
                         # Cast the value to the appropriate type
                         value = coltype(raw_value)
+                        self.logger.debug(f"Setting {repr(value)} for {column}")
                         setattr(row, column, value)
 
             row.do_not_process = True
