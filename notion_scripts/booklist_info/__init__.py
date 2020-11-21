@@ -13,7 +13,7 @@ class BooklistInfo():
 
     def _get_db_data(self):
         cv = self.client.get_collection_view(self.config.get('page'))
-        return cv.collection.get_rows(search="Penguin")
+        return cv.collection.get_rows()
 
     def _process_table_data(self, data):
         for row in data:
