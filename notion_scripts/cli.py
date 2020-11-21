@@ -27,10 +27,11 @@ def scripts(ctx, config):
 
 @scripts.command()
 @click.pass_context
-def booklist(ctx):
+@click.option('-p', '--page', help='Notion URL to page/database to be updated', type=str, default=None)
+def booklist(ctx, page):
     """
     Updates the given page/database with information from the goodreads API by
     matching books based on title. You can configure the mapping of column names
     to API results in the config.
     """
-    BooklistInfo(ctx)
+    BooklistInfo(ctx, page)
