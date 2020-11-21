@@ -13,8 +13,13 @@ class Config(Schema):
         unknown = INCLUDE
 
     class BooklistInfoSchema(Schema):
+        # The notion database we want to update, this can be overridden with the --page option
         page = fields.Str(default="https://www.notion.so/<some_org_id>/<a_page_id>")
+
+        # API Token for goodreads
         goodreads_api_token = fields.Str(default="Get a token from https://www.goodreads.com/api/keys")
+
+        # A mapping of notion column names to first-level fields in goodreads API results
         columns = fields.Dict(
             keys=fields.Str(), values=fields.Str(),
             default={
@@ -27,7 +32,10 @@ class Config(Schema):
             }
         )
 
+    # This is the logged-in user token for Notion - instructions here: https://github.com/jamalex/notion-py#usage
     token = fields.Str(default="<token_v2>")
+
+    # Config section for the booklist command
     booklist_info = fields.Nested(BooklistInfoSchema, default=BooklistInfoSchema())
 
     @staticmethod
